@@ -1,0 +1,7 @@
+/build
+/.vscode
+/CMakeFiles
+/tmp
+/build_system
+/runtime
+

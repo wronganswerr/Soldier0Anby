@@ -1,0 +1,40 @@
+add_library(lsm_engine STATIC
+	src/arena.cpp
+	src/cache.cpp
+	src/coding.cpp
+	src/comparator.cpp
+	src/crc32c.cpp
+	src/db_format.cpp
+	src/env.cpp
+	src/env_posix.cpp
+	src/filename.cpp
+	src/filter_block.cpp
+	src/filter_policy.cpp
+	src/hash.cpp
+	src/interator.cpp
+	src/internal_filter_policy.cpp
+	src/internal_key.cpp
+	src/internal_key_comparator.cpp
+	src/logging.cpp
+	src/look_up_key.cpp
+	src/memtable.cpp
+	src/my_logger.cpp
+	src/options.cpp
+	src/status.cpp
+	src/table.cpp
+	src/table_builder.cpp
+	src/table_cache.cpp
+	src/thread_pool.cpp
+	src/tool.cpp
+	src/version_edit.cpp
+	src/version_set.cpp
+	src/write_batch.cpp
+	src/zero_db.cpp
+)
+
+target_include_directories(lsm_engine
+	PUBLIC
+		${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+add_subdirectory(ctest)
