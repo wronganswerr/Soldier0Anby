@@ -2,32 +2,35 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
-#include "crc32c.hpp"
+#include <gtest/gtest.h>
 
-#include "gtest/gtest.h"
+#include <cstdint>
+#include <cstring>
+
+#include "crc32c.hpp"
 
 TEST(CRC, StandardResults)
 {
     // From rfc3720 section B.4.
     char buf[32];
 
-    memset(buf, 0, sizeof(buf));
-    ASSERT_EQ(0x8a9136aa, Value(buf, sizeof(buf)));
+    std::memset(buf, 0, sizeof(buf));
+    ASSERT_EQ(0x8a9136aa, crc32c::Value(buf, sizeof(buf)));
 
-    memset(buf, 0xff, sizeof(buf));
-    ASSERT_EQ(0x62a8ab43, Value(buf, sizeof(buf)));
+    std::memset(buf, 0xff, sizeof(buf));
+    ASSERT_EQ(0x62a8ab43, crc32c::Value(buf, sizeof(buf)));
 
     for (int i = 0; i < 32; i++)
     {
         buf[i] = i;
     }
-    ASSERT_EQ(0x46dd794e, Value(buf, sizeof(buf)));
+    ASSERT_EQ(0x46dd794e, crc32c::Value(buf, sizeof(buf)));
 
     for (int i = 0; i < 32; i++)
     {
         buf[i] = 31 - i;
     }
-    ASSERT_EQ(0x113fdb5c, Value(buf, sizeof(buf)));
+    ASSERT_EQ(0x113fdb5c, crc32c::Value(buf, sizeof(buf)));
 
     uint8_t data[48] = {
         0x01,
@@ -79,21 +82,26 @@ TEST(CRC, StandardResults)
         0x00,
         0x00,
     };
-    ASSERT_EQ(0xd9963a56, Value(reinterpret_cast<char *>(data), sizeof(data)));
+    ASSERT_EQ(0xd9963a56,
+              crc32c::Value(reinterpret_cast<const char *>(data), sizeof(data)));
 }
 
-TEST(CRC, Values) { ASSERT_NE(Value("a", 1), Value("foo", 3)); }
+TEST(CRC, Values)
+{
+    ASSERT_NE(crc32c::Value("a", 1), crc32c::Value("foo", 3));
+}
 
 TEST(CRC, Extend)
 {
-    ASSERT_EQ(Value("hello world", 11), Extend(Value("hello ", 6), "world", 5));
+    ASSERT_EQ(crc32c::Value("hello world", 11),
+              crc32c::Extend(crc32c::Value("hello ", 6), "world", 5));
 }
 
 TEST(CRC, Mask)
 {
-    uint32_t crc = Value("foo", 3);
-    ASSERT_NE(crc, Mask(crc));
-    ASSERT_NE(crc, Mask(Mask(crc)));
-    ASSERT_EQ(crc, Unmask(Mask(crc)));
-    ASSERT_EQ(crc, Unmask(Unmask(Mask(Mask(crc)))));
+    uint32_t crc = crc32c::Value("foo", 3);
+    ASSERT_NE(crc, crc32c::Mask(crc));
+    ASSERT_NE(crc, crc32c::Mask(crc32c::Mask(crc)));
+    ASSERT_EQ(crc, crc32c::Unmask(crc32c::Mask(crc)));
+    ASSERT_EQ(crc, crc32c::Unmask(crc32c::Unmask(crc32c::Mask(crc32c::Mask(crc)))));
 }

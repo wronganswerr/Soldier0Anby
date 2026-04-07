@@ -2,6 +2,7 @@
 #include "filter_policy.hpp"
 #include "db_format.hpp"
 
+
 // Filter policy wrapper that converts from internal keys to user keys
 class InternalFilterPolicy : public FilterPolicy
 {

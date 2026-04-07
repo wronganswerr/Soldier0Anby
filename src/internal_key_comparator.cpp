@@ -1,4 +1,4 @@
-#include "comparators/internal_key_comparator.hpp"
+#include "internal_key_comparator.hpp"
 
 // InternalKeyComparator::~InternalKeyComparator() {};
 

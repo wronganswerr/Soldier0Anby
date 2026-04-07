@@ -5,7 +5,7 @@
 
 typedef uint64_t Key;
 
-struct Comparator
+struct KeyComparator
 {
     int operator()(const Key &a, const Key &b) const
     {
@@ -26,12 +26,12 @@ struct Comparator
 
 TEST(SkipTest, Empty)
 {
-    Arena arena = Arena();
-    Comparator cmp;
-    SkipList<Key, Comparator> list(cmp, &arena);
+    Arena arena;
+    KeyComparator cmp;
+    SkipList<Key, KeyComparator> list(cmp, &arena);
     ASSERT_TRUE(!list.Contains(10));
 
-    SkipList<Key, Comparator>::Iterator iter(&list);
+    SkipList<Key, KeyComparator>::Iterator iter(&list);
     ASSERT_TRUE(!iter.Valid());
     iter.SeekToFirst();
     ASSERT_TRUE(!iter.Valid());
@@ -48,8 +48,8 @@ TEST(SkipTest, InsertAndLookup)
     Random rnd(1000);
     std::set<Key> keys;
     Arena arena;
-    Comparator cmp;
-    SkipList<Key, Comparator> list(cmp, &arena);
+    KeyComparator cmp;
+    SkipList<Key, KeyComparator> list(cmp, &arena);
     ASSERT_TRUE(!list.Contains(0));
     for (int i = 0; i < N; i++)
     {
@@ -74,7 +74,7 @@ TEST(SkipTest, InsertAndLookup)
 
     // Simple iterator tests
     {
-        SkipList<Key, Comparator>::Iterator iter(&list);
+        SkipList<Key, KeyComparator>::Iterator iter(&list);
         ASSERT_TRUE(!iter.Valid());
 
         iter.Seek(0);
@@ -93,7 +93,7 @@ TEST(SkipTest, InsertAndLookup)
     // Forward iteration test
     for (int i = 0; i < R; i++)
     {
-        SkipList<Key, Comparator>::Iterator iter(&list);
+        SkipList<Key, KeyComparator>::Iterator iter(&list);
         iter.Seek(i);
 
         // Compare against model iterator
@@ -117,7 +117,7 @@ TEST(SkipTest, InsertAndLookup)
 
     // Backward iteration test
     {
-        SkipList<Key, Comparator>::Iterator iter(&list);
+        SkipList<Key, KeyComparator>::Iterator iter(&list);
         iter.SeekToLast();
 
         // Compare against model iterator

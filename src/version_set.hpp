@@ -5,10 +5,10 @@
 #include "db_format.hpp"
 #include "thread_annotations.hpp"
 #include "version_edit.hpp"
-#include "comparators/internal_key_comparator.hpp"
+#include "internal_key_comparator.hpp"
 #include "options.hpp"
 #include "look_up_key.hpp"
-#include "stdcxx.hpp"
+#include "port.hpp"
 
 namespace log
 {

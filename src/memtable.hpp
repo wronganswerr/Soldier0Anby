@@ -1,6 +1,6 @@
 // 实现一个简单版本，支持kv对的 insert 和 query
 #pragma once
-#include "comparators/internal_key_comparator.hpp"
+#include "internal_key_comparator.hpp"
 #include "skiplist.hpp"
 #include "arena.hpp"
 #include "status.hpp"

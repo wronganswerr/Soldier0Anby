@@ -3,16 +3,21 @@
 #include <cstdint>
 
 #include "cache.hpp"
-#include "comparators/comparator.hpp"
+#include "comparator.hpp"
 #include "env.hpp"
 #include "filter_policy.hpp"
 #include "options.hpp"
-#include "table/block.hpp"
-#include "table/filter_block.hpp"
-#include "table/format.hpp"
-#include "table/two_level_iterator.hpp"
+#include "block.hpp"
+#include "filter_block.hpp"
+#include "format.hpp"
+// #include "two_level_iterator.hpp"
 #include "coding.hpp"
 #include "iterator.hpp"
+#include "status.hpp"
+#include "slice.hpp"
+#include "iterator.hpp"
+#include "options.hpp"
+#include "env.hpp"
 
 class Block;
 class BlockHandle;

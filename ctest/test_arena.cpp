@@ -7,6 +7,7 @@
 
 #include <gtest/gtest.h>
 // TEST(ArenaTest, Empty) { Arena arena; }
+
 TEST(ArenaTest, Simple)
 {
     std::vector<std::pair<size_t, char *>> allocated;

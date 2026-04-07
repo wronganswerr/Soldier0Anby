@@ -9,7 +9,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "stdcxx.hpp"
+#include "port.hpp"
 #include "coding.hpp"
 namespace crc32c
 {

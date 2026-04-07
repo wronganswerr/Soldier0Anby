@@ -6,22 +6,22 @@
 
 #include <cassert>
 
-#include "comparators/comparator.hpp"
+#include "comparator.hpp"
 #include "env.hpp"
 #include "filter_policy.hpp"
 #include "options.hpp"
 
-#include "table/block_builder.hpp" //
+#include "block_builder.hpp" //
 
 #include "filter_block.hpp"
 
-#include "table/format.hpp" //
+#include "format.hpp" //
 
 #include "coding.hpp"
 
 #include "crc32c.hpp" //
 
-#include "stdcxx.hpp"
+#include "port.hpp"
 
 struct TableBuilder::Rep
 {

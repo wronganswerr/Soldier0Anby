@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "conda-debug",
+      "displayName": "Conda Debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "/home/wronganswer/miniconda3/envs/Soldier0Anby/bin/x86_64-conda-linux-gnu-gcc",
+        "CMAKE_CXX_COMPILER": "/home/wronganswer/miniconda3/envs/Soldier0Anby/bin/x86_64-conda-linux-gnu-g++",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      },
+      "environment": {
+        "PATH": "/home/wronganswer/miniconda3/envs/Soldier0Anby/bin:$penv{PATH}"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "conda-debug",
+      "configurePreset": "conda-debug"
+    }
+  ]
+}

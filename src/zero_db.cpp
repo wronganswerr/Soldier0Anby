@@ -1,3 +1,6 @@
+// 弃用！！！
+
+
 #include "zero_db.hpp"
 // type|key_size|key_data(ptr)|value_size|value_data(ptr)|
 

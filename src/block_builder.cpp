@@ -26,12 +26,11 @@
 //     num_restarts: uint32
 // restarts[i] contains the offset within the block of the ith restart point.
 
-#include "table/block_builder.hpp"
 
 #include <algorithm>
 #include <cassert>
 
-#include "comparators/comparator.hpp"
+#include "comparator.hpp"
 #include "options.hpp"
 #include "coding.hpp"
 
